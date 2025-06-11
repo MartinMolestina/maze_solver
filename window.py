@@ -81,3 +81,19 @@ class Cell:
         for has_wall, start, end in walls:
             if has_wall:
                 self.__win.draw_line(Line(start, end), "black")
+
+
+    def draw_move(self, to_cell, undo=False):
+        # Set color based on whether it's a move or an undo
+        color = "gray" if undo else "red"
+
+        # Start and end points: center of each cell
+        x1 = (self.__x1 + self.__x2) // 2
+        y1 = (self.__y1 + self.__y2) // 2
+        x2 = (to_cell.__x1 + to_cell.__x2) // 2
+        y2 = (to_cell.__y1 + to_cell.__y2) // 2
+
+        # Draw the move
+        line = Line(Point(x1, y1), Point(x2, y2))
+        self.__win.draw_line(line, color)
+
