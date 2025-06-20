@@ -54,7 +54,7 @@ class Line:
 
 class Cell:
 
-    def __init__(self, window):
+    def __init__(self, window=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -70,6 +70,9 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
+
+        if self.__win is None:
+            return
 
         walls = [
             (self.has_top_wall,    Point(x1, y1), Point(x2, y1)),
@@ -92,6 +95,9 @@ class Cell:
         y1 = (self.__y1 + self.__y2) // 2
         x2 = (to_cell.__x1 + to_cell.__x2) // 2
         y2 = (to_cell.__y1 + to_cell.__y2) // 2
+
+        if self.__win is None:
+            return
 
         # Draw the move
         line = Line(Point(x1, y1), Point(x2, y2))
