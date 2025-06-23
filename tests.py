@@ -43,5 +43,22 @@ class Tests(unittest.TestCase):
         self.assertEqual(len(m5._Maze__cells), 1)
         self.assertEqual(len(m5._Maze__cells[0]), 15)
 
+    def test_maze_entrance_and_exit(self):
+        num_cols = 5
+        num_rows = 4
+        maze = Maze(0, 0, num_rows, num_cols, 10, 10)
+
+        # Call the private method using name mangling
+        maze._Maze__break_entrance_and_exit()
+
+        entrance_cell = maze._Maze__cells[0][0]
+        exit_cell = maze._Maze__cells[num_cols - 1][num_rows - 1]
+
+        # Check that the top wall is removed at entrance
+        self.assertFalse(entrance_cell.has_top_wall)
+
+        # Check that the bottom wall is removed at exit
+        self.assertFalse(exit_cell.has_bottom_wall)
+
 if __name__ == "__main__":
     unittest.main()

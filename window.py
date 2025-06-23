@@ -82,8 +82,8 @@ class Cell:
         ]
 
         for has_wall, start, end in walls:
-            if has_wall:
-                self.__win.draw_line(Line(start, end), "black")
+            color = "black" if has_wall else "#d9d9d9"  # You could use "white" as well
+            self.__win.draw_line(Line(start, end), color)
 
 
     def draw_move(self, to_cell, undo=False):
