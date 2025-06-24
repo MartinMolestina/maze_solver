@@ -4,6 +4,8 @@ class Window:
 
     def __init__(self, width, height):
 
+        self.visited = False
+
         self.root = Tk()
         self.root.title("Maze Generator")
 
@@ -64,6 +66,7 @@ class Cell:
         self.__y1 = -1
         self.__y2 = -1
         self.__win = window
+        self.visited = False
 
     def draw(self, x1, y1, x2, y2):
         self.__x1 = x1
@@ -103,3 +106,5 @@ class Cell:
         line = Line(Point(x1, y1), Point(x2, y2))
         self.__win.draw_line(line, color)
 
+
+    

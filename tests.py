@@ -60,5 +60,22 @@ class Tests(unittest.TestCase):
         # Check that the bottom wall is removed at exit
         self.assertFalse(exit_cell.has_bottom_wall)
 
+
+    def test_reset_cells_visited(self):
+        maze = Maze(0, 0, 3, 3, 10, 10, seed=42)
+
+        # Manually set all visited = True to simulate a traversal
+        for col in maze._Maze__cells:
+            for cell in col:
+                cell.visited = True
+
+        # Call the method
+        maze._Maze__reset_cells_visited()
+
+        # Assert all cells are reset to False
+        for col in maze._Maze__cells:
+            for cell in col:
+                self.assertFalse(cell.visited)
+
 if __name__ == "__main__":
     unittest.main()
